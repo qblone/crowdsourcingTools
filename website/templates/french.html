@@ -1,0 +1,1057 @@
+{% load static %}
+{% load bootstrap3 %}
+<!DOCTYPE HTML>
+<!--
+    Read Only by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Spoofer Test</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body >
+
+<!-- Header -->
+<section id="header">
+    <header>
+        {% for name, ip in ip_add %}
+            {{ ip }}
+        {% endfor %}
+        <h1> {{ ip_add }} </h1>
+        <span class="image avatar"><img src="{%static 'images/tudelftlogo.png' %}" alt="" /></span>
+        <h1 id="logo"><a href="#">Spoofer Project</a></h1>
+
+        <!--        <p>This project tests the compliance of ISPs <br />
+
+        <p> Client ASN is {{promodel_id}}, Userid {{test_success}}, platform {{platform}}, comment {{comment_success}}
+
+            <br/><label id="platformname">test</label>
+        </p>-->
+    </header>
+    <nav id="nav">
+        <ul>
+            <li><a href="#one" class="active">About</a></li>
+            <li><a href="#two">How can I participate ?</a></li>
+            <li><a href="#six">Comments</a></li>
+            <li><a href="#seven">FAQs</a></li>
+        </ul>
+    </nav>
+
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+
+
+
+        {% if test_success == 0 %}
+
+
+
+            <!-- One -->
+            <section id="one">
+                <div class="container">
+                    <header class="major">
+                        <h2>  </h2>
+                    </header>
+                    <section id="failed">
+                        {%if comment_success != 1 %}
+
+                            <div class="container">
+                                <div class ="error">
+                                    <small> Nous autorisons un nombre limité de tests par fournisseur d'accès Internet. Malheureusement, nous avons atteint la limite de votre Internet Service Provider. Veuillez renvoyer la tâche, si vous l'avez acceptée. </small>
+                                </div>
+                            </div>
+                            {% if platform != "MTURK" %}
+                                <div class ="container">
+
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        {{ bform.as_p }}
+                                        {% if platform == "ProA" %}
+
+                                            <input type="hidden" name="id" value="{{promodel_id}}">
+                                        {% endif %}
+                                        <input type="submit" name="{{bform.prefix}}" value="Submit" />
+                                    </form>
+
+
+
+
+                                </div>
+                                </section>
+
+                            {% endif %}
+
+                        {% elif comment_success == 1 %}
+                            <section id="comm-success">
+                                <div class="container">
+
+
+
+                                    <div class = "success">
+                                        <small> Merci d'avoir envoyé vos commentaires. </small> </div>
+                                </div>
+                            </section>
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+
+
+            <!-- Two -->
+        {% elif test_success == 1 or test_success == 2 or test_success == -1  or test_success == -2 or test_success == -3%}
+
+
+
+
+            {% if test_success == 2 %}
+
+                <section id="failed">
+
+                    {% if platform == "ProA" %}
+                        <div class="container">
+                             <small> Merci d'avoir envoyé l'URL. <br/> Passez à l'étape suivante pour compléter votre étude. </small> 
+                        </div>
+
+                    {% elif platform == "MTURK" %}
+                        <div class="container">
+                             <small>Merci d'avoir participé à notre étude, votre paiement sera traité sous peu.<br/>
+
+                             Si vous n'avez pas encore soumis vos résultats, renvoyez votre HIT et réessayez. <br/> SVP notez que nous acceptons seulement 1 HIT par travailleur.
+
+                            </small> 
+                        </div>
+                    {% else %}
+                        <div class="container">
+                            <small>Merci d'avoir participé à notre étude. Copiez votre <mark> code de validation </mark> et soumettez-le comme preuve de votre travail.  <br/>
+
+                            </small> 
+
+                            <table>
+                            <tr>
+                            <td>
+
+                            <h5>
+
+                            <font color="red">
+
+                             Validation Code:
+                            </font>
+                            </h5>
+                            </td>
+                            <td>
+                             <input type="text" value={{validation_code}} class = "validation" disabled="true" />
+                            </td>
+                            </tr>
+                            </table>
+
+
+                            <br\>
+                            <br\>
+
+                            <div class="warning" id="warning_message" >
+
+
+                            Noter que nous traiterons votre paiement après avoir validé l'URL que vous avez soumise.
+                            </div>
+
+                            
+                        </div>
+
+                    {% endif %}
+                    <div class ="container">
+                        {%if platform != "MTURK" and platform != "ProA" and comment_success != 1 %}
+
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ bform.as_p }}
+                                {% if platform == "ProA" %}
+
+                                    <input type="hidden" name="id" value="{{promodel_id}}">
+                                {% endif %}
+                                <input type="submit" name="{{bform.prefix}}" value="Submit" />
+                            </form>
+
+
+
+
+                            </div>
+                            </section>
+
+                        {% elif comment_success == 1 %}
+                            <section id="comm-success">
+                                <div class="container">
+
+
+
+                                    <div class = "success">
+                                        <small> Merci d'avoir envoyé vos commentaires. </small> </div>
+                                </div>
+                            </section>
+                        {% endif %}
+
+
+            {%  else %} <!-- Starting if user did something wrong -->
+
+
+
+                <section id="one">
+                    <div class="container">
+                        <header class="major">
+                            <h2>  </h2>
+                        </header>
+
+
+
+
+
+                        <p>
+                            Nous sommes un groupe de chercheurs de la <b>Delft University of Technology (TU Delft) </b> e nous invitons les usagers de tous les pays du monde à nous aider à recueillir des données! C'est très simple et ça demande aucun effort de votre part! Vous devez seulement télécharger l'application test (nommée"Spoofer"), démarrer et soumettre les résultats au fond de la page.
+                        </p>
+                        <p>
+                            Vous pouvez commencer dès maintenant par le Étape 1!
+
+                        </p>
+
+                        <p>
+                            Si vous voulez plus d'informations de base: le test mesure si un Opérateur Internet a implémenté une pratique exemplaire appelée BCP38, ce qui contribue à protéger les réseaux et les utilisateurs contre tout dommage. Vous pouvez trouver plus d'informations sur BCP38 <a href="https://tools.ietf.org/html/bcp38"  target="_blank"> <font color="blue">ici</font> </a>. Vous pouvez trouver plus d'informations sur l'application de test "Spoofer" <a href="https://www.caida.org/projects/spoofer/faq.xml"  target="_blank"> <font color="blue"> ici </font> </a>.. L'application est complètement sécurisée et peut être désinstallée après avoir soumis les résultats. Si vous avez d'autres questions, n'hésitez pas à nous contacter à l'adresse suivante:  <a href="mailto:q.b.lone@tudelft.nl"> <font color="blue"> q.b.lone@tudelft.nl </font></a>.<br>
+                           
+                        </p>
+                    </div>
+                </section>
+
+
+
+
+
+                <section id="two">
+                    <div class="container">
+
+                        <h3>Comment peux-je participer?</h3>
+
+
+
+
+
+
+
+                        <h2> Étape 1 </h2>
+
+                        <p> Sélectionnez le système Opératif (OS) actif sur votre ordinateur pour procéder:  </p>
+
+
+
+                        <!-- Check for amazon -->
+
+                        {% if  no_online and platform == "MTURK" %}
+
+                            <div class="info">
+                                <p><small>
+
+                                    SVP notez que nous autorisons un nombre limité de tests par zone. Nous acceptons aussi 1 HIT par travailleur. Nous acceptons les résultats selon le principe du premier arrivé, premier servi. <br/> Il existe actuellement <em> {{no_online}} d'autres utilisateurs </em> qui regardent cette tâche.
+
+                                </small>
+                                </p>
+                            </div>
+
+
+                        {% elif no_online  %}
+                            <div class="info">
+                                <p><small>
+
+                                    SVP notez que nous autorisons un nombre limité de tests par zone.  Nous acceptons les résultats selon le principe du premier arrivé, premier servi. <br/> Il existe actuellement <em> {{no_online}} d'autres utilisateurs </em> qui regardent cette tâche.
+                                </small>
+                                </p>
+                            </div>
+
+                        {% endif %}
+
+
+
+
+                        <div class="4u 12u(medium)">
+                            <form >
+                                <br/>
+                                <input type="radio" id="g" name="rg"  value=1 >
+                                <label for="g"> Windows </label>
+                                <br/>
+                                <input type="radio" id="r" name="rg" value=0 >
+                                <label for="r">Mac OSX</label>
+                                <br/>
+                                <input type="radio" id="u" name="rg" value=2 >
+                                <label for="u"> Ubuntu</label>
+                                <br/>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- Section 3: Windows -->
+                <section id="three">
+
+
+                    <div id="proceed1" class="desc"  style="display: none;">
+                        <div class="container">
+
+
+                            <h2> Étape 2 </h2>
+                            <h3> Téléchargez l’application</h3>
+
+                            <p> SVP cliquez sur le lien suivant pour télécharger l’application:
+                                <br/>
+
+
+
+
+
+                            <h4>
+
+                                <A HREF="https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-win32.exe"><IMG SRC= "{%static 'images/instructions/windows/downloadarrow.png' %}"
+                                                                                                                        alt ="download" WIDTH=25 TITLE="download Application"></A>
+
+
+                                <font color="red"><a href = 'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-win32.exe'>  Download Application
+                                    <span class="label"> </span> </a> </font>
+                            </h4>
+
+
+
+                            <h2> Étape 3 </h2>
+                            <h3> Installez l'application</h3>
+                            <p> SVP, double cliquez sur le fichier téléchargé pour installer l’application. Sélectionnez les options marquées en rouge (voyez l'image au-dessous).</p>
+                            <div class="4u"><span class="image left">
+                            <img src="{%static 'images/instructions/windows/run_1.png' %}" alt="" /></span></div>
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_2.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_3.png' %}" alt="" />
+                            <br/> <br/>
+                            <!-- <p> Leave default options unchanged</p> -->
+                            <img src="{%static 'images/instructions/windows/run_4.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_5.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_6.png' %}" alt="" />
+                            <br>
+
+
+
+                            <img src="{%static 'images/instructions/windows/run_7.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_8.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_9.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_10.png' %}" alt=""  />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_11.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_12.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_13.png' %}" alt="" />
+                            <br>
+                            <img src="{%static 'images/instructions/windows/run_14.png' %}" alt="" />
+                            <br>
+
+
+                            <h2> Étape 4 </h2>
+                            <h3> Démarrez l’application </h3>
+
+                            <p> Cliquez <em> Start Tests </em> , et attendez la fin du test.
+                            </p>
+                            <img src="{%static 'images/instructions/windows/run_15.png' %}" alt="" style="width:600px;height:450px;"/>
+
+                            <br/>
+                            <br/>
+
+                            <p> Après la fin du test, un lien appelé <i>report</i> est affiché (voyez l'image au-dessous). SVP cliquez le lien.</p>
+                            <img src="{%static 'images/instructions/windows/run_16.png' %}" alt="" style="width:600px;height:450px;"/>
+
+                            <h2> Étape 5 </h2>
+                            <h3> Soumettez l'URL </h3>
+
+                            <p> Choisissez votre navigateur.</p>
+
+                            <img src="{%static 'images/instructions/windows/run_17.png' %}" alt="" />
+                            <br/>
+                            <p>  SVP copiez l’URL dans votre navigateur, soumettez-le dans la <mark> Spoofer url </mark> boîte au fond et cliquez sur <mark> Submit</mark>. </p>
+
+                            <img src="{%static 'images/instructions/windows/run_18.png' %}" alt=""/>
+
+                            <!--copied from the ending section of OSX-->
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <!-- Section 4: OSx -->
+                <section id="four">
+                    <div id="proceed0" class="desc"  style="display: none;">
+
+                        <div class="container">
+                            <h2> Étape 2 </h2>
+                            <h3> Téléchargez l’application</h3>
+
+                            <p> SVP cliquez sur le lien suivant pour télécharger l’application:
+                                <br/>
+
+                            <h4>
+
+                                <A HREF="'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-macosx.pkg'"><IMG SRC= "{%static 'images/instructions/windows/downloadarrow.png' %}"
+                                                                                                                           alt ="download" WIDTH=25 TITLE="download Application"/></A>
+
+                                <font color="red"><a href = 'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-macosx.pkg'>  Download Application
+                                    <span class="label"> </span> </a> </font>
+                            </p>
+
+
+
+                            </h4>
+
+
+                            <p>
+                            <h2> Étape 3 </h2>
+                            <h3> Install Application </h3>
+                            <h2> Étape 3 </h2>
+                            <h3> Installez l'application</h3>
+                            SVP, double cliquez sur le fichier téléchargé pour installer l’application. Sélectionnez les options marquées en rouge (voyez l'image au-dessous).</p>
+
+                            <div class="4u"><span class="image left">
+                                                        <img src="{%static 'images/instructions/run_1.png' %}" alt="" /></span></div>
+
+                            <img src="{%static 'images/instructions/run_2.png' %}" alt="" />
+                            <img src="{%static 'images/instructions/run_3.png' %}" alt="" />
+                            <img src="{%static 'images/instructions/run_4.png' %}" alt="" />
+                            <img src="{%static 'images/instructions/run_5.png' %}" alt="" />
+                            <img src="{%static 'images/instructions/run_6.png' %}" alt="" />
+
+                            <br/><br/>
+                            <p> Inserez votre identifiant et mot de passe pour installer l’application.
+                                <img src="{%static 'images/instructions/run_7.png' %}" alt="" />
+                            </p>
+
+                            <h2> Étape 4 </h2>
+                            <h3> Démarrez l’application </h3>
+                            <p> Cliquez <em> Start Tests </em> , et attendez la fin du test.
+                            </p>
+
+                            <img src="{%static 'images/instructions/run_11.png' %}" alt="" />
+                            <br/>
+
+                            <img src="{%static 'images/instructions/run_12.png' %}" alt="" />
+                            <br/><br/>
+
+                            <p>
+
+                                Après la fin du test, un lien appelé <i>report</i> est affiché (voyez l'image au-dessous). <br/> SVP cliquez le lien.
+
+
+
+                                <img src="{%static 'images/instructions/run_9.png' %}" alt="" />
+                            </p>
+                            <h2> Étape 5 </h2>
+                            <h4> Soumettez l'URL </h4>
+
+                            <p>  SVP copiez l’URL dans votre navigateur, soumettez-le dans la <mark> Spoofer url </mark> boîte au fond et cliquez sur <mark> Submit</mark>. </p>
+
+
+                                <img src="{%static 'images/instructions/run_10.png' %}" alt="" />
+                          
+
+
+
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+                <section id="five">
+
+
+                    <div id="proceed2" class="desc"  style="display: none;">
+                        <div class="container">
+
+
+                            <!-- <h2> Step 2 </h2>
+                             <h3> Download Application</h3>
+
+                             <p> Please click on the following link:
+                                 <br/>
+
+                                 <font color="red"><a href = 'https://launchpad.net/~matthewluckie/+archive/ubuntu/spoofer'>  Spoofer PPA  <span class="label"> </span> </a> </font>
+                             </p>
+                             -->
+
+
+                            <h2> Étape 2 </h2>
+                            <h3> Installez l'application </h3>
+
+                            <br>
+                            <p> Ouvrez le terminal.</p>
+                            <img src="{%static 'images/instructions/ubuntu/run_2.png' %}" alt="" width=400 /> <br>
+                            <br>
+
+                            <h4> Instalación sur Ubuntu 16.04 </h4>
+
+                            Pour installer l’application en <b><mark>Ubuntu 16.04</mark> </b>, exécutez les commandes suivantes dans le terminal. <br/>
+
+                            <div class="bordered">
+
+                                sudo add-apt-repository ppa:matthewluckie/spoofer
+                                <br/>
+
+                                sudo apt-get update
+
+                                <br/>
+
+
+                                sudo apt-get install spoofer-gui
+
+
+
+                            </div>
+
+
+                            <br/>
+
+
+                            <p>
+
+
+
+                            <h4> Instalación sur Ubuntu 14.04 </h4>
+
+
+
+
+                             Pour installer l’application en <b><mark>Ubuntu 14.04</mark> </b>, utilises le lien suivant pour télécharger l'application. 
+
+                            <br/>
+
+
+                            <A HREF='https://www.caida.org/projects/spoofer/downloads/Spoofer-1.0.6-ubuntu-14.04.tar.gz'><IMG SRC= "{%static 'images/instructions/windows/downloadarrow.png' %}"
+                                                                                                                              alt ="download" WIDTH=25 TITLE="download Application" /></A>
+
+
+                            <font color="red"><a href = 'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.0.6-ubuntu-14.04.tar.gz'>  Download Application  <span class="label"> </span> </a> </font>
+                            <br/>
+
+                            </p>
+
+
+
+
+
+
+                            <p> Changes le répertoire dans le dossier où vous avez téléchargé le fichier. <br/> Exécutez les commandes suivantes dans le terminal. 
+
+                            <div class="bordered">
+                                tar -xvf Spoofer-1.0.6-ubuntu-14.04.tar.gz
+                                <br/>
+
+                                cd Spoofer-1.0.6-ubuntu-14.04
+
+                                <br/>
+
+                                sudo apt-get install gdebi-core
+                                <br/>
+
+
+
+
+                            </div>
+                            </p>
+
+                            <p> Vérifiez l'architecture de votre système en utilisant la commande suivante.
+
+                            <div class="smallbordered">
+
+                                arch
+                                <br/>
+                            </div>
+
+                            <br/>
+
+                            </p>
+
+                            <p>
+
+                                Si votre architecture est  <mark> x86_64 </mark>, exécutez les commandes suivantes.
+
+                            <div class ="bordered">
+
+                                cd amd64 <br/>
+
+                                sudo gdebi spoofer-prober_1.0.6-1_amd64.deb
+
+                                <br/>
+                                sudo gdebi spoofer-scheduler_1.0.6-1_amd64.deb
+
+                                <br/>
+                                sudo gdebi spoofer-gui_1.0.6-1_amd64.deb
+                            </div>
+
+
+
+
+                            </p>
+
+
+                            <p>
+
+
+
+                             Si votre architecture est  <mark> i386 </mark>, exécutez les commandes suivantes.
+
+
+                            <div class ="bordered">
+
+                                cd i386 <br/>
+
+                                sudo gdebi spoofer-prober_1.0.6-1_i386.deb
+
+                                <br/>
+                                sudo gdebi spoofer-scheduler_1.0.6-1_i386.deb
+
+                                <br/>
+                                sudo gdebi spoofer-gui_1.0.6-1_i386.deb
+                            </div>
+
+                            </p>
+
+
+
+                           
+
+
+
+
+
+                            <h2> Étape 3 </h2>
+                            <h3> Démarrez l’application  </h3>
+
+                            <p> Pour démarrez l’application, exécutez les commandes suivantes. <br>
+
+                            <div class="smallbordered">
+
+                                spoofer-gui  <br/>
+                                <br/>
+                            </div>
+                            </p>
+
+                            <img src="{%static 'images/instructions/ubuntu/run_17.png' %}" alt="" width=600/> <br>
+
+                            <p> Cliquez <em> Start Tests </em> , et attendez la fin du test.</p>
+                            <img src="{%static 'images/instructions/ubuntu/run_18.png' %}" alt="" width=600  /> <br>
+                            <p> Après la fin du test, un lien appelé <i>report</i> est affiché (voyez l'image au-dessous). <br/> SVP cliquez le lien.
+                            </p>
+
+
+
+                            <h2> Étape 4 </h2>
+                            <h3> Soumettez l'URL </h3>
+
+                            <p>  SVP copiez l’URL dans votre navigateur, soumettez-le dans la <mark> Spoofer url </mark> boîte au fond et cliquez sur <mark> Submit</mark>. 
+                                <br/> <br/>
+                                <img src="{%static 'images/instructions/ubuntu/run_19.png' %}" alt="" style="width:460px;height:350px;"/> <br></p>
+
+
+
+                        </div>
+                    </div>
+                </section>
+
+                {%if platform != "ProA" %}
+
+                    <section id="submiturl">
+                        <div class="container">
+                            <!-- <form action="{{link}}" method="post" class="form-inline" onsubmit="return validate()"> -->
+
+                            {%if platform == "MTURK" %}
+                                <form action="{{AMAZON_HOST}}" method="post" class="form-inline" onsubmit="return validate();">
+                                <input type="hidden" id="assignmentId" value="{{assignment_id}}" name="assignmentId"/>
+                                <input type="hidden" id="workerId" value="{{worker_id}}" name="workerId"/>
+                                <input type="hidden" id="hitId" value="{{hit_id}}" name="hitId"/>
+                                <input type="hidden" id="userId" value="{{userid}}" name="userid"/>
+
+                                {% csrf_token %}
+                                {{ aform.as_p }}
+                                {{ bform.as_p }}
+
+                                {%if assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE" %}
+
+
+                                    <small> <div class= "warning" > Vous devez ACCEPTER l'HIT avant de pouvoir soumettre les résultats. </div></small>
+
+
+
+                                {%else%}
+
+
+                                    <input type="submit" name="{{bform.prefix}}" value="Submit" />
+
+                                {% endif %}
+
+
+                            {% else %}
+
+                                <form action="{{link}}#submiturl" method="post" class="form-inline" onsubmit="return validate();">
+
+                                {% csrf_token %}
+                                {{ aform.as_p }}
+
+
+
+                            {% endif %}
+
+
+
+
+
+
+
+
+                            <div class="warning" id="warning_message" >
+                                <small> Noter que nous approuverons le paiement après validation de l'URL que vous avez soumise. </small>
+                            </div>
+
+
+                            <div class="error" id="error_message" style="display: none;">
+                                <small> <strong>URL invalide!</strong> Cliquez sur le lien du <mark> report</mark>. <br/>Copiez l'URL comme indiqué dans les instructions ci-dessus et soumettez-la à nouveau.
+                                        <br/> Veuillez noter que l'URL devrait ressembler à http://spoofer.caida.org/report.php?sessionkey=APPKEY<br/> </small>
+                            </div>
+
+
+
+
+
+
+                            {% if test_success == -2 %}
+
+                                <div class="error" id="error_message" >
+                                    <small> <strong>URL invalide!</strong> Cliquez sur le lien du <mark> report</mark>. <br/>Copiez l'URL comme indiqué dans les instructions ci-dessus et soumettez-la à nouveau.
+                                        <br/> Veuillez noter que l'URL devrait ressembler à http://spoofer.caida.org/report.php?sessionkey=APPKEY<br/> </small>
+                                </div>
+
+                            {% endif %}
+
+
+                            {% if test_success == -3 %}
+                                <div class="error" id="system_fail" >
+                                    <small>  Quelque chose a mal tourné! Re-soumettre l'URL en la collant à nouveau dans la case ci-dessus. Si le problème persiste, collez l'URL dans les sections de commentaires ci-dessous. Merci.
+                                    </small><br/>
+                                </div>
+                            {% endif %}
+
+
+
+                            <div id="name_error"></div>
+
+
+                            {%if platform != "MTURK"  %}
+
+                                <input type="submit" name="{{aform.prefix}}" value="Submit" />
+                                </form>
+                            {% endif %}
+
+
+
+
+
+                        </div>
+
+                    </section>
+
+                {% endif %} <!-- This section does not appear for proa-->
+
+
+
+
+
+
+
+
+
+                {% if platform == "ProA" %}
+
+
+
+
+                    <section id = "proA">
+                        <div class ="container">
+                            <form action="" method="post" onsubmit="return validateProA();">
+                                {% csrf_token %}
+                                <div class="fieldWrapper">
+                                    <label for="{{ proaform.spoofer_url.id_for_label }}">Spoofer URL:</label>
+                                    {{ proaform.spoofer_url }}
+                                </div>
+                                <div class="warning" id="warning_message" >
+                                    <small> Notez que nous traiterons seulement le paiement après la soumission de l'URL valide. </small>
+                                </div>
+
+                                <div class="error" id="error_message" style="display: none;">
+                                    <small> <strong>URL invalide!</strong> Cliquez sur le lien du <mark> report</mark>. <br/>Copiez l'URL comme indiqué dans les instructions ci-dessus et soumettez-la à nouveau.
+                                        <br/> Veuillez noter que l'URL devrait ressembler à http://spoofer.caida.org/report.php?sessionkey=APPKEY<br/> </small>
+                                </div>
+
+                                <h2> Étape 5 </h2>
+                                <h3> Envoyer l'ID du participant </h3>
+
+                                <div class ="info">
+                                    <small> Copiez votre ID de participant en haut de la page et soumettez-le dans le formulaire ci-dessous. Notez que nous ne serons pas en mesure de traiter votre paiement sans cette information.</small> </div>
+
+
+                                <div class="fieldWrapper">
+                                    <label for="{{ proaform.participantID.id_for_label }}">Participant ID :</label>
+                                    {{ proaform.participantID }}
+                                </div>
+
+
+
+                                <input type="hidden" name="id" value="{{promodel_id}}">
+
+                                <br/>
+                                <!-- {{ proaform.as_p }}
+                                                                            <input type="hidden"  value="{{promodel_id}}" name="proa_value"/> -->
+
+
+
+
+                                <input type="submit" name="{{proaform.prefix}}" value="Submit" />
+                            </form>
+                            <br/>
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </section>
+                {% endif %}  <!-- Proa finishes here -->
+
+            {% endif %} <!-- end if user can do the test -->
+
+
+
+            {% if platform == "ProA" and test_success == 2 %}
+
+                <section id = "proASuccess">
+                    <div class ="container">
+
+
+
+                        <h2> Étape 6 </h2>
+                        <h3> Complétez l'étude </h3>
+
+
+                        Cliquez sur l'URL suivante pour compléter votre étude. <br/>
+
+
+                        <a href ='https://prolific.ac/submissions/complete?cc=2IDEQSSX' > <font color="blue">Completion URL </font> </a>
+
+                        <br/> <br/>
+                    </div>
+                </section>
+            {% endif %}
+
+
+
+            <!-- Section 6: Comments -->
+
+            {% if comment_success == 1  %}
+                <section id="comm-success">
+                    <div class="container">
+
+
+
+                        <div class = "success">
+                            <small> Merci d'avoir envoyé vos commentaires. </small> </div>
+                    </div>
+                </section>
+            {% else %}
+                {% if test_success != 2 and platform != "MTURK"%}
+                    <section id="six">
+                        <div class="container">
+
+
+                            <h3> Feedback / Comments</h3>
+                            <!-- <p> Any errors or suggestions can be submitted using the form below.</p>-->
+
+
+                            {%if platform != "MTURK"  %}
+
+                                <form action="" method="post">
+
+                            {% endif %}
+
+
+
+
+                            {% csrf_token %}
+                            {{ bform.as_p }}
+
+
+
+
+
+                            {%if platform == "MTURK" %}
+
+                                {%if test_success == 2 %}
+                                    <form action="{{AMAZON_HOST}}" method="post" class="form-inline">
+                                    <input type="hidden" id="assignmentId" value="{{assignment_id}}" name="assignmentId"/>
+                                    <input type="hidden" id="workerId" value="{{worker_id}}" name="workerId"/>
+                                    <input type="hidden" id="hitId" value="{{hit_id}}" name="hitId"/>
+                                    <input type="hidden" id="userId" value="{{userid}}" name="userid"/>
+                                {% endif %}
+
+
+                                {%if assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE" %}
+
+
+                                    <small> <div class= "warning" > Vous devez ACCEPTER l'HIT avant de pouvoir soumettre les résultats. </div></small>
+
+
+
+                                {%else%}
+                                    {% if test_success == 2 %}
+
+                                        <input type="submit" name="{{bform.prefix}}" value="Submit" />
+                                    {% else %}
+                                        <input type="submit" name="{{bform.prefix}}" value="Submit" onclick="validate()"/>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <input type="submit" name="{{bform.prefix}}" value="Submit" />
+                            {% endif %}
+
+                            </form>
+
+
+
+
+                        </div>
+                    </section>
+                {% endif %}
+            {% endif %}
+        {% elif comment_success == 1 %}
+            <section id="comm-success">
+                <div class="container">
+
+
+
+                    <div class = "success">
+                        <small> Merci d'avoir envoyé vos commentaires. </small> </div>
+                </div>
+            </section>
+        {% endif %}
+
+
+
+
+
+
+
+
+        <!-- Section 7: FAQs -->
+
+        <section id="seven">
+            <div class="container">
+                <h3> FAQs</h3>
+                <p> Pour plus de détails sur la mesure et l'application BCP-38 utilisées, veuillez visiter: <a href="https://www.caida.org/projects/spoofer/faq.xml"  target="_blank"> <font color="blue"> Spoofer: FAQ </font></a>   </p>
+            </div>
+        </section>
+
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <ul class="copyright">
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<!-- Scripts -->
+
+<!-- If in Amazon Turk User has not accepted task -->
+
+
+<!-- Checking for validity of URL -->
+
+<style scoped>
+    .bordered {
+        width: 750px;
+        height: 250px;
+        padding: 20px;
+        border: 1px solid darkorange;
+        border-radius: 8px;
+    }
+
+    .smallbordered {
+        width: 750px;
+        height: 100px;
+        padding: 20px;
+        border: 1px solid darkorange;
+        border-radius: 8px;
+    }
+
+
+
+</style>
+
+
+<script src= "{% static 'assets/js/jquery.min.js' %} "></script>
+<script src= "{% static 'assets/js/validations.js' %} "></script>
+<script src="{% static 'assets/js/jquery.scrollzer.min.js' %} "></script>
+<script src="{% static 'assets/js/jquery.scrolly.min.js' %} "></script>
+<script src="{% static 'assets/js/skel.min.js' %} "></script>
+<script src="{% static 'assets/js/util.js' %} "></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="{% static 'assets/js/main.js' %} "></script>
+<script src="{% static 'assets/js/hide_show_divs.js' %} "></script>
+
+
+
+</body>
+</html>

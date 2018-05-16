@@ -1,0 +1,888 @@
+        {% load static %}
+        {% load bootstrap3 %}
+        <!DOCTYPE HTML>
+        <!--
+            Read Only by HTML5 UP
+            html5up.net | @ajlkn
+            Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+        -->
+        <html>
+            <head>
+                <title>Spoofer Test</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+                <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+                <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+            </head>
+            <body>
+
+<!-- Header -->
+                    <section id="header">
+                        <header>
+                                 {% for name, ip in ip_add %}
+                                    {{ ip }}
+                                 {% endfor %}
+                            <h1> {{ ip_add }} </h1>
+                            <span class="image avatar"><img src="{%static 'images/tudelftlogo.png' %}" alt="" /></span>
+                            <h1 id="logo"><a href="#">Spoofer Project</a></h1>
+                             <p>This project tests the compliance of ISPs <br />
+                             <p> Client ASN is {{no_online}}
+                            </p>
+                        </header>
+                        <nav id="nav">
+                            <ul>
+                                <li><a href="#one" class="active">About</a></li>
+                                <li><a href="#two">How can I participate ?</a></li>
+                                <li><a href="#six">Comments</a></li>
+                                <li><a href="#seven">FAQs</a></li>
+                            </ul>
+                        </nav>
+
+                    </section>
+
+                <!-- Wrapper -->
+                    <div id="wrapper">
+
+                        <!-- Main -->
+                            <div id="main">
+
+
+<!-- One -->
+                                    <section id="one">
+                                        <div class="container">
+                                            <header class="major">
+                                                <h2>  </h2>
+                                            </header>
+                                            <p> 
+                                            We are researchers from <b>Delft University of Technology (TU Delft) </b>  and we invite users from countries around the world to help us collect data! It is very simple. You don't have to do any work. Just download the test application (called "Spoofer"), run it, and submit the results at the bottom of the page. 
+
+                                            </p>
+                                            <p>
+                                            You can start right now with Step 1! 
+
+                                            </p>
+
+                                            <p>
+
+                                            In case you want more background information: the test measures whether a network has implemented a best practice called BCP38, which helps to keep networks and users safe from harm. You can find more information about BCP38 here. You can find more information about the test application "Spoofer" here. The app is completely safe and can be uninstalled after submitting the results. If you have more questions, feel free to contact us at: XXX@tudelft.nl
+                                            </p>
+                                        </div>
+                                    </section>
+
+<!-- Two -->
+                                {% if success == 1 or test_success == -1  or test_success == -2 or test_success == -3%}
+                                <section id="two">
+                                        <div class="container">
+
+                                            <h3>How can I participate?</h3>
+
+
+
+
+                                            
+
+
+                                            <h2> Step 1 </h2>
+
+                                            <p> Please select the Operating System (OS) you are running on your computer to proceed:  </p>
+
+
+                                            {% if no_online  %}
+                                            <font color="blue">
+                                            <p><small>
+                                            Please note we are running limited number of tests and will accept results on first come first serve basis. There are currently <em> {{no_online}} other users </em>looking at this task.
+                                            </small> 
+                                            </p>
+                                            </font>
+
+
+                                            {% endif %}
+
+
+
+
+                                                <div class="4u 12u(medium)">
+                                                        <form >
+                                                            <br/> 
+                                                            <input type="radio" id="g" name="rg"  value=1 >
+                                                            <label for="g"> Windows </label>
+                                                            <br/> 
+                                                            <input type="radio" id="r" name="rg" value=0 >
+                                                            <label for="r">Mac OSX</label>
+                                                            <br/> 
+                                                            <input type="radio" id="u" name="rg" value=2 >
+                                                            <label for="u"> Ubuntu</label>
+                                                            <br/>
+                                                        </form>
+                                                </div>
+
+                                        </div>
+
+
+                                </section>
+
+
+
+<!-- Section 3: Windows -->
+                                    <section id="three">
+
+
+                                        <div id="proceed1" class="desc"  style="display: none;">
+                                            <div class="container">
+
+                                            
+                                            <h2> Step 2 </h2>
+                                            <h3> Download Application</h3>
+
+                                            <p> Please click on the following link to download the application:
+                                                <br/>
+
+                                                <!--<font color="red">
+
+                                                <form id = "form-id" action="" method="post">{% csrf_token %}
+                                                <a href="https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-win32.exe" onclick="document.forms['form-id'].submit();" >  
+
+                                                Download Application
+
+                                                 </a> 
+                                                </font>
+
+                                                {{form4.going}}
+                                             
+                                                </form>-->
+
+                                             
+
+
+                                                <font color="red"><a href = 'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-win32.exe'>  Download Application  <span class="label"> </span> </a> </font>
+                                            </p>
+                                            <h2> Step 3 </h2>
+                                            <h3> Install Application </h3>
+                                            <p> Please select the options marked in red to install the application  </p>
+
+                                            <div class="4u"><span class="image left">
+                                            <img src="{%static 'images/instructions/windows/run_1.png' %}" alt="" style="width:600px;height:450px;"/></span></div>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_2.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_3.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <p> Leave defoult paramethers unchanged</p>
+                                            <img src="{%static 'images/instructions/windows/run_4.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_5.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_6.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+
+
+                                                <br/>
+                                            <p> Wait untill the end of the process, then continue the installation.</p>
+                                            <img src="{%static 'images/instructions/windows/run_7.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_8.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_9.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_10.png' %}" alt="" style="width:600px;height:450px;" />
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_11.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_12.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_13.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_14.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <p> Click on <i>Finish</i> to terminate the installation. The program starts authomatically.</p>
+
+                                            <h2> Step 4 </h2>
+                                            <h3> Run Application </h3>
+                                            
+                                            <p> If the test do not start authomatically, click on <i>Star Test</i>, and wait untill it is finished (it may take some minutes). Once the progress bar reaches the end, the test is finished.</p>
+                                            <img src="{%static 'images/instructions/windows/run_15.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <p> Once the test has finished, a link called <i>Report</i> appears, as shown in the figure below. Please click on the link.</p>
+                                            <img src="{%static 'images/instructions/windows/run_16.png' %}" alt="" style="width:600px;height:450px;"/>                  
+
+                                            <h2> Step 5 </h2>
+                                            <h3> Submit URL </h3>
+                                           
+                                            <p> Choose your browser.</p>
+                                            <img src="{%static 'images/instructions/windows/run_17.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <br>
+                                            <img src="{%static 'images/instructions/windows/run_18.png' %}" alt="" style="width:600px;height:450px;"/>
+                                            <p>  Please copy the URL from the browser. Submit it in the box at the bottom. Then you are done! </p>
+<!--copied from the ending section of OSX-->
+                                                <form action="" method="post" class="form-inline">
+                                                    <p>
+                                                        Paste the URL in the box below:
+                                                    </p>
+                                                    {% csrf_token %}
+                                                    {{ aform.as_p }}
+                                                    <input type="submit" name="{{aform.prefix}}" value="Submit" />
+
+
+
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </section>
+
+
+
+
+ <!-- Section 4: OSx -->
+                                    <section id="four">
+                                        <div id="proceed0" class="desc"  style="display: none;">
+                                                 
+                                            <div class="container">
+                                            <h2> Step 2 </h2> 
+
+                                            <h3> Download Application</h3>
+
+
+                                            <p> Please click on the following link to download the application:
+                                                <br/>
+                                                <font color="red"><a href = 'https://www.caida.org/projects/spoofer/downloads/Spoofer-1.1.0-macosx.pkg'>  Download Application  <span class="label"> </span> </a> </font>
+                                            </p>
+                                            <h2> Step 3 </h2>
+                                            <h3> Install Application </h3>
+                                            </p>Please select the options marked in red to install the application</p> 
+                                            
+                                            <div class="4u"><span class="image left">
+                                            <img src="{%static 'images/instructions/run_1.png' %}" alt="" /></span></div>
+
+                                            <img src="{%static 'images/instructions/run_2.png' %}" alt="" />
+                                            <img src="{%static 'images/instructions/run_3.png' %}" alt="" />
+                                            <img src="{%static 'images/instructions/run_4.png' %}" alt="" />
+                                            <img src="{%static 'images/instructions/run_5.png' %}" alt="" />
+                                            <img src="{%static 'images/instructions/run_6.png' %}" alt="" />
+
+                                            <br/>
+                                            <p> Enter username and password to install the application </p>
+                                            <img src="{%static 'images/instructions/run_7.png' %}" alt="" />
+
+                                            <h2> Step 4 </h2>
+                                            <h3> Run Application </h3>
+                                            Please select the options marked in red to install the application 
+
+                                            <img src="{%static 'images/instructions/run_11.png' %}" alt="" />
+                                            <br/>
+                                            <p>
+                                                <br/>
+                                            Please wait a few minutes for the application to finish testing. The progress is highlighted with a progress bar. Once the bar reaches the end, the test is finished.
+
+                                            </p>
+                                            <img src="{%static 'images/instructions/run_12.png' %}" alt="" />
+
+                                            <p>
+                                                <br/>
+                                            Once the test has finished, a link called "report" appears, as shown in the figure below. Please click on the link. It will open the test results in your browser.
+
+
+                                            </p>
+                                            <img src="{%static 'images/instructions/run_9.png' %}" alt="" />
+                                            <h2> Step 5 </h2>
+                                            <h4> Submit URL </h4>
+
+                                            <img src="{%static 'images/instructions/run_10.png' %}" alt="" />
+                                            <p>  Please copy the URL from the browser. Submit it in the box at the bottom. Then you are done! </p>
+
+                                                <form action="" method="post" class="form-inline">
+                                                    <!-- <div class="row uniform">
+                                                        <!-- <div class="12u">
+                                                            <!--<ul class="actions"> -->
+                                                               <!--{% csrf_token %}		
+
+                                                                {% bootstrap_form aform   layout='inline' %}
+                                                                {% buttons %}
+                                                                 <button type="submit" layout='inline' class="btn btn-primary" name="{{aform.prefix}}" value="Submit">
+                                                                 {% bootstrap_icon "star" %} Submit
+                                                                 </button>
+                                                                {% endbuttons %}-->
+                                                                    <p>
+                                                                    Paste the URL in the box below:
+                                                                    </p>
+
+
+                                                                    {% csrf_token %}
+                                                                    {{ aform.as_p }}
+
+
+                                                                    <input type="submit" name="{{aform.prefix}}" value="Submit" />	
+
+
+
+
+
+
+                                                                <!-- <li><input type="submit" class="special" value="Submit URL" /></li> -->
+
+                                                            <!-- </ul>
+                                                        </div>
+                                                    </div>-->
+                                                </form>
+
+                                                {% if test_success == -2 %}
+                                                 <p> <small> <font color="red"> Invalid URL, please copy URL as shown in the instructions above </font> </small> </p>
+
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+
+                                    </section>
+
+
+<!-- Section 5: Ubuntu, ALL FOLLOWING SECTIONS ARE RENUMBERED ACCORDINGLY-->
+
+                                    <section id="five">
+
+
+                                        <div id="proceed2" class="desc"  style="display: none;">
+                                            <div class="container">
+
+                                            
+                                            <h2> Step 2 </h2>
+                                            <h3> Download Application</h3>
+
+                                            <p> Please click on the following link:
+                                                <br/>
+
+                                                <font color="red"><a href = 'https://launchpad.net/~matthewluckie/+archive/ubuntu/spoofer'>  Spoofer PPA  <span class="label"> </span> </a> </font>
+                                            </p>
+
+
+                                            <h2> Step 3 </h2>
+                                            <h3> Install Application </h3>
+                                            
+                                            <br>
+                                            <p> Open the Terminal.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_2.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p> Copy the command in the highlighted in the red box. </p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_3.png' %}" alt="" style="width:460px;height:350px;" /> <br>
+                                            <br>
+                                            <p> Paste it in the Terminal. </p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_4.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p> Enter your password, then press <i>Enter</i>.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_5.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p> Press <i>Enter</i> to continue. </p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_6.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_7.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p>  Then, copy the second command line, and paste it in the Terminal.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_8.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_9.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_10.png' %}" alt="" style="width:460px;height:350px;"/>  <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_11.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p>  To conclude the installation, copy the following command, paste it in the Terminal and press <i>Enter</i>: <br>
+                                            <b> sudo apt-get install spoofer-gui </b> </p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_12.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p>  Enter your password.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_13.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_14.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <br>
+                                            <p>  Press <i>Y</i>, then <i>Enter</i>.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_15.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <p>  Wait untill the end of the installation.</p>
+                                            <br>
+                                            <img src="{%static 'images/instructions/ubuntu/run_16.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+
+
+
+
+                                            <h2> Step 4 </h2>
+                                            <h3> Run Application </h3>
+                                            
+                                            <p> To lounch the application, digit: <br>
+                                            <b> spoofer-gui </b> <br>
+                                            in the Terminal.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_17.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+
+                                            <p> If the test do not start authomatically, click on <i>Start Test</i>, and wait untill it is finished (it may take some minutes). Once the progress bar reaches the end, the test is finished.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_18.png' %}" alt="" style="width:460px;height:350px;" /> <br>
+                                            <p> Once the test has finished, a link called <i>Report</i> appears. Please click on the link.
+                                            </p>
+
+
+
+                                            <h2> Step 5 </h2>
+                                            <h3> Submit URL </h3>
+                                           
+                                            <p> The results will appear on your browser.</p>
+                                            <img src="{%static 'images/instructions/ubuntu/run_19.png' %}" alt="" style="width:460px;height:350px;"/> <br>
+                                            <p>  Please copy the URL from the browser. Submit it in the box at the bottom. Then you are done! </p>
+
+<!--copied from the ending section of OSX-->
+                                                <form action="" method="post" class="form-inline">
+                                                    <p>
+                                                    Paste the URL in the box below:
+                                                    </p>
+                                                    {% csrf_token %}
+                                                    {{ aform.as_p }}
+                                                    <input type="submit" name="{{aform.prefix}}" value="Submit" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </section>
+
+
+
+                                {% elif test_success == 1 %}
+
+                                <section id="failed">
+                                    <div class="container">
+                                        <p> <font color="blue"> Thank you for participating in our study, your payment will be processed shortly</font> </p>
+                                    </div>
+                                 </section>
+
+
+
+                                {% elif success == 0 or test_success == 0 %}
+                                <section id="failed">
+                                    <div class="container">
+                                        <p> <font color="red"> We are running limited number of tests per Internet Service Provider (ISP). Unfortunately, we already have enough tests from your ISP.</font> </p>
+                                    </div>
+                                 </section>
+
+                               {% endif %}
+
+                                 {% if comment_success == 0 %}
+
+
+  <!-- Section 6: Comments -->
+                                    <section id="six">
+                                        <div class="container">
+                                            <h3> Feedback / Comments</h3>
+                                            <!-- <p> Any errors or suggestions can be submitted using the form below.</p>-->
+
+
+                                             <form action="" method="post">
+                                                {% csrf_token %}
+                                                {{ bform.as_p }}
+                                             <input type="submit" name="{{bform.prefix}}" value="Submit" />
+
+                                                <!-- % csrf_token %}
+                                             <table>
+                                                { form }}
+                                             </table> 
+                                             <input type="submit" value="Submit" />-->
+                                          </form>
+
+
+
+
+                                        </div>
+                                     </section>
+                                 {% else %}
+                                   <section id="comm-success">
+                                       <div class="container">
+                                         <p> <font color="blue"> Thank you for submitting your feedback. </font> </p>
+                                      </div>
+                                   </section>
+                                 {% endif %} 
+
+
+
+<!-- Section 7: FAQs -->
+
+                                  <section id="seven">
+                                        <div class="container">
+                                            <h3> FAQs</h3>
+                                            <p> For further details about BCP-38 measurement and application used please visit : <a href="https://www.caida.org/projects/spoofer/faq.xml"> <font color="blue"> Spoofer: FAQ </font></a>   </p>
+                                        </div>
+                                     </section>
+
+
+
+
+                                <!-- Five -->
+                                <!--
+                                    <section id="five">
+                                        <div class="container">
+                                            <h3>Elements</h3>
+
+                                            <section>
+                                                <h4>Text</h4>
+                                                <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+                                                This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+                                                This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+                                                <hr />
+                                                <header>
+                                                    <h4>Heading with a Subtitle</h4>
+                                                    <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+                                                </header>
+                                                <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+                                                <header>
+                                                    <h5>Heading with a Subtitle</h5>
+                                                    <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+                                                </header>
+                                                <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+                                                <hr />
+                                                <h2>Heading Level 2</h2>
+                                                <h3>Heading Level 3</h3>
+                                                <h4>Heading Level 4</h4>
+                                                <h5>Heading Level 5</h5>
+                                                <h6>Heading Level 6</h6>
+                                                <hr />
+                                                <h5>Blockquote</h5>
+                                                <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+                                                <h5>Preformatted</h5>
+                                                <pre><code>i = 0;
+
+            while (!deck.isInOrder()) {
+                print 'Iteration ' + i;
+                deck.shuffle();
+                i++;
+            }
+
+            print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+                                            </section>
+
+                                            <section>
+                                                <h4>Lists</h4>
+                                                <div class="row">
+                                                    <div class="6u 12u(xsmall)">
+                                                        <h5>Unordered</h5>
+                                                        <ul>
+                                                            <li>Dolor pulvinar etiam magna etiam.</li>
+                                                            <li>Sagittis adipiscing lorem eleifend.</li>
+                                                            <li>Felis enim feugiat dolore viverra.</li>
+                                                        </ul>
+                                                        <h5>Alternate</h5>
+                                                        <ul class="alt">
+                                                            <li>Dolor pulvinar etiam magna etiam.</li>
+                                                            <li>Sagittis adipiscing lorem eleifend.</li>
+                                                            <li>Felis enim feugiat dolore viverra.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="6u 12u(xsmall)">
+                                                        <h5>Ordered</h5>
+                                                        <ol>
+                                                            <li>Dolor pulvinar etiam magna etiam.</li>
+                                                            <li>Etiam vel felis at lorem sed viverra.</li>
+                                                            <li>Felis enim feugiat dolore viverra.</li>
+                                                            <li>Dolor pulvinar etiam magna etiam.</li>
+                                                            <li>Etiam vel felis at lorem sed viverra.</li>
+                                                            <li>Felis enim feugiat dolore viverra.</li>
+                                                        </ol>
+                                                        <h5>Icons</h5>
+                                                        <ul class="icons">
+                                                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                                                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                                                            <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+                                                            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                                                            <li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <h5>Actions</h5>
+                                                <ul class="actions">
+                                                    <li><a href="#" class="button special">Default</a></li>
+                                                    <li><a href="#" class="button">Default</a></li>
+                                                    <li><a href="#" class="button alt">Default</a></li>
+                                                </ul>
+                                                <ul class="actions small">
+                                                    <li><a href="#" class="button special small">Small</a></li>
+                                                    <li><a href="#" class="button small">Small</a></li>
+                                                    <li><a href="#" class="button alt small">Small</a></li>
+                                                </ul>
+                                                <div class="row">
+                                                    <div class="3u 6u(medium) 12u$(xsmall)">
+                                                        <ul class="actions vertical">
+                                                            <li><a href="#" class="button special">Default</a></li>
+                                                            <li><a href="#" class="button">Default</a></li>
+                                                            <li><a href="#" class="button alt">Default</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="3u 6u$(medium) 12u$(xsmall)">
+                                                        <ul class="actions vertical small">
+                                                            <li><a href="#" class="button special small">Small</a></li>
+                                                            <li><a href="#" class="button small">Small</a></li>
+                                                            <li><a href="#" class="button alt small">Small</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="3u 6u(medium) 12u$(xsmall)">
+                                                        <ul class="actions vertical">
+                                                            <li><a href="#" class="button special fit">Default</a></li>
+                                                            <li><a href="#" class="button fit">Default</a></li>
+                                                            <li><a href="#" class="button alt fit">Default</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="3u 6u$(medium) 12u$(xsmall)">
+                                                        <ul class="actions vertical small">
+                                                            <li><a href="#" class="button special small fit">Small</a></li>
+                                                            <li><a href="#" class="button small fit">Small</a></li>
+                                                            <li><a href="#" class="button alt small fit">Small</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section>
+                                                <h4>Table</h4>
+                                                <h5>Default</h5>
+                                                <div class="table-wrapper">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Description</th>
+                                                                <th>Price</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Item One</td>
+                                                                <td>Ante turpis integer aliquet porttitor.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Two</td>
+                                                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                                                                <td>19.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Three</td>
+                                                                <td> Morbi faucibus arcu accumsan lorem.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Four</td>
+                                                                <td>Vitae integer tempus condimentum.</td>
+                                                                <td>19.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Five</td>
+                                                                <td>Ante turpis integer aliquet porttitor.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td>100.00</td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+
+                                                <h5>Alternate</h5>
+                                                <div class="table-wrapper">
+                                                    <table class="alt">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Description</th>
+                                                                <th>Price</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Item One</td>
+                                                                <td>Ante turpis integer aliquet porttitor.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Two</td>
+                                                                <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                                                                <td>19.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Three</td>
+                                                                <td> Morbi faucibus arcu accumsan lorem.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Four</td>
+                                                                <td>Vitae integer tempus condimentum.</td>
+                                                                <td>19.99</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Item Five</td>
+                                                                <td>Ante turpis integer aliquet porttitor.</td>
+                                                                <td>29.99</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td colspan="2"></td>
+                                                                <td>100.00</td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </section>
+
+                                            <section>
+                                                <h4>Buttons</h4>
+                                                <ul class="actions">
+                                                    <li><a href="#" class="button special">Special</a></li>
+                                                    <li><a href="#" class="button">Default</a></li>
+                                                    <li><a href="#" class="button alt">Alternate</a></li>
+                                                </ul>
+                                                <ul class="actions">
+                                                    <li><a href="#" class="button special big">Big</a></li>
+                                                    <li><a href="#" class="button">Default</a></li>
+                                                    <li><a href="#" class="button alt small">Small</a></li>
+                                                </ul>
+                                                <ul class="actions fit">
+                                                    <li><a href="#" class="button special fit">Fit</a></li>
+                                                    <li><a href="#" class="button fit">Fit</a></li>
+                                                    <li><a href="#" class="button alt fit">Fit</a></li>
+                                                </ul>
+                                                <ul class="actions fit small">
+                                                    <li><a href="#" class="button special fit small">Fit + Small</a></li>
+                                                    <li><a href="#" class="button fit small">Fit + Small</a></li>
+                                                    <li><a href="#" class="button alt fit small">Fit + Small</a></li>
+                                                </ul>
+                                                <ul class="actions">
+                                                    <li><a href="#" class="button special icon fa-download">Icon</a></li>
+                                                    <li><a href="#" class="button icon fa-download">Icon</a></li>
+                                                    <li><a href="#" class="button alt icon fa-check">Icon</a></li>
+                                                </ul>
+                                                <ul class="actions">
+                                                    <li><span class="button special disabled">Special</span></li>
+                                                    <li><span class="button disabled">Default</span></li>
+                                                    <li><span class="button alt disabled">Alternate</span></li>
+                                                </ul>
+                                            </section>
+
+                                            <section>
+                                                <h4>Form</h4>
+                                                <form method="post" action="#">
+                                                    <div class="row uniform">
+                                                        <div class="6u 12u(xsmall)">
+                                                            <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+                                                        </div>
+                                                        <div class="6u 12u(xsmall)">
+                                                            <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row uniform">
+                                                        <div class="12u">
+                                                            <div class="select-wrapper">
+                                                                <select name="demo-category" id="demo-category">
+                                                                    <option value="">- Category -</option>
+                                                                    <option value="1">Manufacturing</option>
+                                                                    <option value="1">Shipping</option>
+                                                                    <option value="1">Administration</option>
+                                                                    <option value="1">Human Resources</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row uniform">
+                                                        <div class="4u 12u(medium)">
+                                                            <input type="radio" id="demo-priority-low" name="demo-priority" checked>
+                                                            <label for="demo-priority-low">Low Priority</label>
+                                                        </div>
+                                                        <div class="4u 12u(medium)">
+                                                            <input type="radio" id="demo-priority-normal" name="demo-priority">
+                                                            <label for="demo-priority-normal">Normal Priority</label>
+                                                        </div>
+                                                        <div class="4u 12u(medium)">
+                                                            <input type="radio" id="demo-priority-high" name="demo-priority">
+                                                            <label for="demo-priority-high">High Priority</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row uniform">
+                                                        <div class="6u 12u(medium)">
+                                                            <input type="checkbox" id="demo-copy" name="demo-copy">
+                                                            <label for="demo-copy">Email me a copy of this message</label>
+                                                        </div>
+                                                        <div class="6u 12u(medium)">
+                                                            <input type="checkbox" id="demo-human" name="demo-human" checked>
+                                                            <label for="demo-human">I am a human and not a robot</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row uniform">
+                                                        <div class="12u">
+                                                            <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row uniform">
+                                                        <div class="12u">
+                                                            <ul class="actions">
+                                                                <li><input type="submit" value="Send Message" /></li>
+                                                                <li><input type="reset" value="Reset" class="alt" /></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </section>
+
+                                            <section>
+                                                <h4>Image</h4>
+                                                <h5>Fit</h5>
+                                                <span class="image fit"><img src="images/banner.jpg" alt="" /></span>
+                                                <div class="box alt">
+                                                    <div class="row 50% uniform">
+                                                        <div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+                                                    </div>
+                                                    <div class="row 50% uniform">
+                                                        <div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+                                                    </div>
+                                                    <div class="row 50% uniform">
+                                                        <div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+                                                        <div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+                                                    </div>
+                                                </div>
+                                                <h5>Left &amp; Right</h5>
+                                                <p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+                                                <p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+                                            </section>
+
+                                        </div>
+                                    </section>
+                                -->
+
+                            </div>
+
+                        <!-- Footer -->
+                            <section id="footer">
+                                <div class="container">
+                                    <ul class="copyright">
+                                        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                                    </ul>
+                                </div>
+                            </section>
+
+                    </div>
+
+                <!-- Scripts -->
+                    <script src= "{% static 'assets/js/jquery.min.js' %} "></script>
+                    <script src="{% static 'assets/js/jquery.scrollzer.min.js' %} "></script>
+                    <script src="{% static 'assets/js/jquery.scrolly.min.js' %} "></script>
+                    <script src="{% static 'assets/js/skel.min.js' %} "></script>
+                    <script src="{% static 'assets/js/util.js' %} "></script>
+                    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+                    <script src="{% static 'assets/js/main.js' %} "></script>
+                    <script src="{% static 'assets/js/hide_show_divs.js' %} "></script>
+                    <!-- <script type="text/javascript">
+                     $(document).ready(function() {
+            $("input[name$='rg']").click(function() {
+                var test = $(this).val();
+
+                $("div.desc").hide();
+                $("#proceed" + test).show();
+            });
+        });
+
+                    </script> -->
+
+
+            </body>
+        </html>
